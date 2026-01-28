@@ -1,6 +1,5 @@
 use bevy::app::FixedUpdate;
-use bevy::prelude::{App, ButtonInput, KeyCode, Plugin};
-use bevy_ecs::prelude::{Res, ResMut};
+use bevy::prelude::{App, ButtonInput, KeyCode, Plugin, Res, ResMut};
 use crate::intent::player_intent::PlayerIntent;
 
 pub struct IntentPlugin;
