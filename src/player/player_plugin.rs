@@ -13,8 +13,7 @@ pub struct PlayerPlugin;
 
 impl Plugin for PlayerPlugin {
     fn build(&self, app: &mut App) {
-        app.add_systems(Startup, spawn_character)
-            .add_systems(FixedUpdate, move_character);
+        app.add_systems(Startup, spawn_character);
     }
 }
 
@@ -36,38 +35,6 @@ fn spawn_character(
         Collider {
             half_extents: Vec3::ONE * 0.5,
         },
-        PhysicsFlags { on_ground: false },
+        PhysicsFlags { on_ground: false, was_on_ground: false },
     ));
-}
-
-fn move_character(
-    mut query: Query<
-        (
-            &mut Transform,
-            &mut Position,
-            &mut Velocity,
-            &Collider,
-            &mut PhysicsFlags,
-        ),
-        With<Player>,
-    >,
-    grid: Res<VoxelGrid>,
-) {
-    for (mut transform, mut position, mut velocity, collider, mut flags) in &mut query {
-        // TEMP sanity check
-        let dt = 0.016;
-        velocity.y -= 9.8 * dt;
-
-        PhysicsProcessor::move_and_collide(
-            &mut position,
-            &mut velocity,
-            collider,
-            &mut flags,
-            &*grid,
-            dt,
-        );
-
-        // Sync render
-        transform.translation = position.0;
-    }
 }

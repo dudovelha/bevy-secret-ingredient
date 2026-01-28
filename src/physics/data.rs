@@ -10,6 +10,7 @@ pub struct Velocity (pub Vec3);
 #[derive(Debug, Copy, Clone, Component)]
 pub struct PhysicsFlags {
     pub on_ground: bool,
+    pub was_on_ground: bool,
 }
 
 #[derive(Debug, Copy, Clone, Component)]

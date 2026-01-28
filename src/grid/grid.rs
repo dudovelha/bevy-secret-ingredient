@@ -13,7 +13,7 @@ pub struct GridPos {
     pub z: i32,
 }
 
-#[derive(Resource, Default)]
+#[derive(Default, Resource)]
 pub struct VoxelGrid {
     pub tiles: HashMap<GridPos, TileData>,
     pub size: i32,

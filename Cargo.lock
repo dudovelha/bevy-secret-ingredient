@@ -328,6 +328,7 @@ name = "bevy-secret-ingredient"
 version = "0.1.0"
 dependencies = [
  "bevy",
+ "bevy_ecs",
  "rand",
  "serde",
  "serde_json",
