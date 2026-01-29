@@ -1,3 +1,4 @@
+use bevy::log;
 use crate::grid::grid::VoxelGrid;
 use crate::intent::player_intent::PlayerIntent;
 use crate::physics::data::{Collider, PhysicsFlags, Position, Velocity};
@@ -25,8 +26,7 @@ impl Plugin for PhysicsPlugin {
 
 fn reset_physics_flags(mut query: Query<&mut PhysicsFlags>) {
     for mut flags in &mut query {
-        flags.was_on_ground = flags.on_ground;
-        flags.on_ground = false;
+        flags.begin_tick();
     }
 }
 
@@ -40,10 +40,10 @@ fn apply_input(
     }
 }
 
-fn apply_gravity(mut query: Query<(&mut Velocity, &PhysicsFlags)>, time: Res<Time>) {
+fn apply_gravity(mut query: Query<(&mut Velocity, &mut PhysicsFlags)>, time: Res<Time>) {
     let delta = time.delta_secs();
     for (velocity, flags) in &mut query.iter_mut() {
-        PhysicsProcessor::apply_gravity(velocity.into_inner(), flags, delta);
+        PhysicsProcessor::apply_gravity(velocity.into_inner(), flags.into_inner(), delta);
     }
 }
 fn move_kinematic_bodies(

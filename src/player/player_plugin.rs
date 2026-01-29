@@ -1,13 +1,11 @@
-use crate::grid::grid::VoxelGrid;
 use crate::physics::data::{Collider, PhysicsFlags, Position, Velocity};
-use crate::physics::physics_processor::PhysicsProcessor;
 use crate::player::player::Player;
-use bevy::app::{App, FixedUpdate};
+use bevy::app::App;
 use bevy::asset::Assets;
 use bevy::color::Color;
 use bevy::mesh::{Mesh, Mesh3d};
 use bevy::pbr::{MeshMaterial3d, StandardMaterial};
-use bevy::prelude::{Commands, Plugin, Query, Res, ResMut, Sphere, Startup, Transform, Vec3, With};
+use bevy::prelude::{Commands, Plugin, ResMut, Sphere, Startup, Transform, Vec3};
 
 pub struct PlayerPlugin;
 
@@ -35,6 +33,6 @@ fn spawn_character(
         Collider {
             half_extents: Vec3::ONE * 0.5,
         },
-        PhysicsFlags { on_ground: false, was_on_ground: false },
+        PhysicsFlags::new(),
     ));
 }
