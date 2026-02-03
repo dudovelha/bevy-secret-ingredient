@@ -6,6 +6,7 @@ use crate::physics::physics_processor::PhysicsProcessor;
 use crate::physics::physics_world::PhysicsWorld;
 use crate::player::player::Player;
 use bevy::prelude::*;
+use crate::objects::world_objects::WorldObjects;
 
 pub struct PhysicsPlugin;
 

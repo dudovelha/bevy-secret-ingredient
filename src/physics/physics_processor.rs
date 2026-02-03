@@ -3,6 +3,8 @@ use crate::physics::data::{Collider, PhysicsFlags, Position, Velocity};
 use crate::physics::physics_world::PhysicsWorld;
 use bevy::log;
 use bevy::prelude::Vec3;
+use crate::objects::object::ObjectId;
+use crate::objects::world_objects::WorldObjects;
 
 const GROUND_EPSILON: Vec3 = Vec3::new(0.0, -0.05, 0.0);
 const GRAVITY: f32 = 9.8;

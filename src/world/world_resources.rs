@@ -12,7 +12,7 @@ impl WorldResources {
         if let Ok(level_data) = fs::read_to_string(path) {
             let level_data: Vec<Vec<Vec<u8>>> = serde_json::from_str(&level_data).unwrap();
 
-            grid.size = level_data[0].len() as i32;
+            grid.size = level_data[0][0].len() as i32;
             grid.origin = Vec3::new(
                 grid.size as f32 * 0.5 * CELL_SIZE_F,
                 CELL_SIZE_F / 2.0,
